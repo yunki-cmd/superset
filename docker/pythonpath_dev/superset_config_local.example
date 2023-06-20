@@ -23,5 +23,7 @@
 # superset/config.py
 #
 
-SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://pguser:pgpwd@some.host/superset"
+#SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://pguser:pgpwd@some.host/superset"
 SQLALCHEMY_ECHO = True
+SECRET_KEY = "67Zcqoyw8wIXWY4tC5ZQDnn1J9D5LqXb6OHL3uPioI0"
+SUPERSET_SECRET_KEY = "67Zcqoyw8wIXWY4tC5ZQDnn1J9D5LqXb6OHL3uPioI0"

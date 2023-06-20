@@ -281,6 +281,7 @@ class Dashboard extends React.PureComponent {
   }
 
   refreshCharts(ids) {
+    console.log(ids);
     ids.forEach(id => {
       this.props.actions.triggerQuery(true, id);
     });
@@ -292,6 +293,7 @@ class Dashboard extends React.PureComponent {
     }
     return (
       <>
+        <div>dashboard</div>
         <OmniContainer />
         <DashboardBuilder />
       </>

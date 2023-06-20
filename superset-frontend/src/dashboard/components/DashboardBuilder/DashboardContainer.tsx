@@ -25,11 +25,15 @@ import {
   Filter,
   Filters,
   isFeatureEnabled,
+  styled,
 } from '@superset-ui/core';
 import { ParentSize } from '@vx/responsive';
 import pick from 'lodash/pick';
 import Tabs from 'src/components/Tabs';
 import DashboardGrid from 'src/dashboard/containers/DashboardGrid';
+
+import { onRefresh } from 'src/dashboard/actions/dashboardState';
+
 import {
   ChartsState,
   DashboardLayout,
@@ -47,6 +51,7 @@ import { setInScopeStatusOfFilters } from 'src/dashboard/actions/nativeFilters';
 import { getRootLevelTabIndex, getRootLevelTabsComponent } from './utils';
 import { findTabsWithChartsInScope } from '../nativeFilters/utils';
 import { NATIVE_FILTER_DIVIDER_PREFIX } from '../nativeFilters/FiltersConfigModal/utils';
+import './style.css';
 
 type DashboardContainerProps = {
   topLevelTabs?: LayoutItem;
@@ -76,6 +81,14 @@ const DashboardContainer: FC<DashboardContainerProps> = ({ topLevelTabs }) => {
     state => state.dashboardState.directPathToChild,
   );
   const charts = useSelector<RootState, ChartsState>(state => state.charts);
+  const chartlist = useSelector<RootState, string[]>(state => {
+    const { charts } = state;
+    return Object.keys(charts);
+  });
+  const dashboardId = useSelector<RootState, number>(state => {
+    const { dashboardInfo } = state;
+    return dashboardInfo.id;
+  });
   const [tabIndex, setTabIndex] = useState(
     getRootLevelTabIndex(dashboardLayout, directPathToChild),
   );
@@ -132,8 +145,22 @@ const DashboardContainer: FC<DashboardContainerProps> = ({ topLevelTabs }) => {
   const min = Math.min(tabIndex, childIds.length - 1);
   const activeKey = min === 0 ? DASHBOARD_GRID_ID : min.toString();
 
+  const onRefreshAllChart = async () => {
+    console.log('refresh all chart');
+    console.log({ chartlist, dashboardId });
+    await dispatch(onRefresh(chartlist, true, 0, dashboardId));
+  };
+
   return (
     <div className="grid-container" data-test="grid-container">
+      <button
+        type="button"
+        id="ButtonIdNone"
+        className="ButtonCssNone"
+        onClick={onRefreshAllChart}
+      >
+        Recargar página
+      </button>
       <ParentSize>
         {({ width }) => (
           /*

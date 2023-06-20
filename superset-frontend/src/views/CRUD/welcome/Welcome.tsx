@@ -275,7 +275,7 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
   return (
     <WelcomeContainer>
       <WelcomeNav>
-        <span className="navbar-brand">Home</span>
+        <span className="navbar-brand">Hot reloading funcionan??'</span>
         {isFeatureEnabled(FeatureFlag.THUMBNAILS) ? (
           <div className="switch">
             <AntdSwitch checked={checked} onChange={handleToggle} />

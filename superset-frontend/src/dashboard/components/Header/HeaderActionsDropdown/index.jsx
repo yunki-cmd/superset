@@ -211,7 +211,7 @@ class HeaderActionsDropdown extends React.PureComponent {
       userCanEdit,
       userCanShare,
       userCanSave,
-      userCanCurate,
+      // userCanCurate,
       isLoading,
       refreshLimit,
       refreshWarning,
@@ -321,7 +321,7 @@ class HeaderActionsDropdown extends React.PureComponent {
           </Menu.Item>
         )}
 
-        {!editMode && userCanCurate && (
+        {!editMode && (
           <Menu.Item key={MENU_KEYS.MANAGE_EMBEDDED}>
             {t('Embed dashboard')}
           </Menu.Item>

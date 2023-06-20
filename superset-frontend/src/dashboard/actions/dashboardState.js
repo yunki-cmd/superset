@@ -457,6 +457,7 @@ export function onRefresh(
 ) {
   return dispatch => {
     dispatch({ type: ON_REFRESH });
+    console.log({ dashboardId, chartList, force, interval });
     refreshCharts(chartList, force, interval, dashboardId, dispatch).then(
       () => {
         dispatch(onRefreshSuccess());

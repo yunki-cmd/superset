@@ -89,6 +89,7 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_SSL=false
+      - SECRET_KEY = 67Zcqoyw8wIXWY4tC5ZQDnn1J9D5LqXb6OHL3uPioI0
 
   superset-init:
     image: *superset-image

@@ -25,7 +25,7 @@ import * as actions from 'src/reports/actions/reports';
 import * as featureFlags from 'src/featureFlags';
 import mockState from 'spec/fixtures/mockStateWithoutUser';
 import { HeaderProps } from './types';
-import Header from '.';
+import Header from './index.jsx';
 
 const createProps = () => ({
   addSuccessToast: jest.fn(),

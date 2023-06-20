@@ -30,14 +30,6 @@ export type User = {
   username: string;
 };
 
-export interface UserWithPermissionsAndRoles extends User {
-  permissions: {
-    database_access?: string[];
-    datasource_access?: string[];
-  };
-  roles: Record<string, [string, string][]>;
-}
-
 export type UndefinedUser = {};
 
 export type Dashboard = {
@@ -58,6 +50,14 @@ export interface CommonBootstrapData {
 
 export function isUser(user: any): user is User {
   return isPlainObject(user) && 'username' in user;
+}
+
+export interface UserWithPermissionsAndRoles extends User {
+  permissions: {
+    database_access?: string[];
+    datasource_access?: string[];
+  };
+  roles: Record<string, [string, string][]>;
 }
 
 export function isUserWithPermissionsAndRoles(

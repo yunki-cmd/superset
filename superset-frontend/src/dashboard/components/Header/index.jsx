@@ -42,7 +42,6 @@ import UndoRedoKeyListeners from 'src/dashboard/components/UndoRedoKeyListeners'
 import PropertiesModal from 'src/dashboard/components/PropertiesModal';
 import ReportModal from 'src/components/ReportModal';
 import { chartPropShape } from 'src/dashboard/util/propShapes';
-import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
 import {
   UNDO_LIMIT,
   SAVE_TYPE_OVERWRITE,
@@ -60,7 +59,7 @@ const propTypes = {
   addSuccessToast: PropTypes.func.isRequired,
   addDangerToast: PropTypes.func.isRequired,
   addWarningToast: PropTypes.func.isRequired,
-  user: UserWithPermissionsAndRoles,
+  user: PropTypes.func.isRequired,
   dashboardInfo: PropTypes.object.isRequired,
   dashboardTitle: PropTypes.string.isRequired,
   dataMask: PropTypes.object.isRequired,
@@ -261,6 +260,7 @@ class Header extends React.PureComponent {
 
   forceRefresh() {
     if (!this.props.isLoading) {
+      console.log({ props: this.props });
       const chartList = Object.keys(this.props.charts);
       this.props.logEvent(LOG_ACTIONS_FORCE_REFRESH_DASHBOARD, {
         force: true,
